@@ -6,7 +6,7 @@ const Products = ({ dispatch, products }) => {
   function handleDelete(id) {
     dispatch({
       type: 'products/delete',
-      payload: id,
+      payload: 1,
     });
   }
   return (

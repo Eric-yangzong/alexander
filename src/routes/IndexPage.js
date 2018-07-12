@@ -5,7 +5,13 @@ import { Form, Icon, Input, Button } from 'antd';
 
 const FormItem = Form.Item;
 
-function IndexPage() {
+function IndexPage({ dispatch }) {
+  function handleLogin(id) {
+    dispatch({
+      type: 'indexpage/login',
+      payload: id,
+    });
+  }
   return (<div className={styles.divbg}>
     <Form layout="inline" className={styles.form_center} >
       <FormItem >
@@ -17,7 +23,7 @@ function IndexPage() {
       <FormItem>
         <Button
           type="primary"
-          htmlType="submit">
+          htmlType="submit" onClick={handleLogin} >
           Log in
       </Button>
       </FormItem>
@@ -26,8 +32,6 @@ function IndexPage() {
   );
 }
 
-
-IndexPage.propTypes = {
-};
-
-export default connect()(IndexPage);
+export default connect(({ indexpage }) => ({
+  indexpage,
+}))(IndexPage);
