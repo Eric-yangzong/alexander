@@ -1,0 +1,761 @@
+<!DOCTYPE HTML><html><head><title>Admin API API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 3.0.0"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+
+        $('[data-toggle]').click(function() {
+          var selector = $(this).data('target') + ' pre code';
+          $(selector).each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+
+        // open modal on hashes like #_action_get
+        $(window).bind('hashchange', function(e) {
+          var anchor_id = document.location.hash.substr(1); //strip #
+          var element = $('#' + anchor_id);
+
+          // do we have such element + is it a modal?  --> show it
+          if (element.length && element.hasClass('modal')) {
+            element.modal('show');
+          }
+        });
+
+        // execute hashchange on first page load
+        $(window).trigger('hashchange');
+
+        // remove url fragment on modal hide
+        $('.modal').on('hidden.bs.modal', function() {
+          try {
+            if (history && history.replaceState) {
+                history.replaceState({}, '', '#');
+            }
+          } catch(e) {}
+        });
+      });
+    </script><style>
+      .hljs {
+        background: transparent;
+      }
+      .parent {
+        color: #999;
+      }
+      .list-group-item > .badge {
+        float: none;
+        margin-right: 6px;
+      }
+      .panel-title > .methods {
+        float: right;
+      }
+      .badge {
+        border-radius: 0;
+        text-transform: uppercase;
+        width: 70px;
+        font-weight: normal;
+        color: #f3f3f6;
+        line-height: normal;
+      }
+      .badge_get {
+        background-color: #63a8e2;
+      }
+      .badge_post {
+        background-color: #6cbd7d;
+      }
+      .badge_put {
+        background-color: #22bac4;
+      }
+      .badge_delete {
+        background-color: #d26460;
+      }
+      .badge_patch {
+        background-color: #ccc444;
+      }
+      .list-group, .panel-group {
+        margin-bottom: 0;
+      }
+      .panel-group .panel+.panel-white {
+        margin-top: 0;
+      }
+      .panel-group .panel-white {
+        border-bottom: 1px solid #F5F5F5;
+        border-radius: 0;
+      }
+      .panel-white:last-child {
+        border-bottom-color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .panel-white .panel-heading {
+        background: white;
+      }
+      .tab-pane ul {
+        padding-left: 2em;
+      }
+      .tab-pane h1 {
+        font-size: 1.3em;
+      }
+      .tab-pane h2 {
+        font-size: 1.2em;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab-pane h3 {
+        font-size: 1.1em;
+      }
+      .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #sidebar {
+        margin-top: 30px;
+        padding-right: 5px;
+        overflow: auto;
+        height: 90%;
+      }
+      .top-resource-description {
+        border-bottom: 1px solid #ddd;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description {
+        border-bottom: 1px solid #fcfcfc;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description p:last-child {
+        margin: 0;
+      }
+      .list-group .badge {
+        float: left;
+      }
+      .method_description {
+        margin-left: 85px;
+      }
+      .method_description p:last-child {
+        margin: 0;
+      }
+      .list-group-item {
+        cursor: pointer;
+      }
+      .list-group-item:hover {
+        background-color: #f5f5f5;
+      }
+
+      pre code {
+        overflow: auto;
+        word-wrap: normal;
+        white-space: pre;
+      }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Admin API API documentation <small>version v1</small></h1><p>http://localhost:8081/v1</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="jobs" class="panel-title">/jobs</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_jobs_jobconfs"><span class="parent">/jobs</span>/jobconfs</a> <span class="methods"><a href="#jobs_jobconfs_get"><span class="badge badge_get">get</span></a> <a href="#jobs_jobconfs_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_jobs_jobconfs" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Jobs services</p></div><div class="list-group"><div onclick="window.location.href = '#jobs_jobconfs_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Return list of Jobs</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#jobs_jobconfs_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new type of Job Conf</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/jobs</span>/jobconfs</h4></div><div class="modal-body"><div class="alert alert-info"><p>Return list of Jobs</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs_get_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs_get_request"><h3>Query Parameters</h3><ul><li><strong>offset</strong>: <em>(integer - default: 0 - minimum: 0 - maximum: 2147483647)</em><p>Skip over a number of elements by specifying an offset value for the query</p></li><li><strong>limit</strong>: <em>(integer - default: 10 - minimum: 0 - maximum: 2147483647)</em><p>Limit the number of elements returned in the response</p><p><strong>Example</strong>:</p><pre><code>10</code></pre></li><li><strong>orderBy</strong>: <em>(string)</em><p>Order by field: field A, field B</p></li><li><strong>order</strong>: <em>(one of desc, asc - default: desc)</em><p>Order</p></li><li><strong>query</strong>: <em>(string)</em><p>A query expressed as a CQL string (see <a href="https://dev.folio.org/reference/glossary#cql">dev.folio.org/reference/glossary#cql</a>) using valid searchable fields. The first example below shows the general form of a full CQL query, but those fields might not be relevant in this context.</p><p>native mongodb query syntax with valid searchable fields: for example location</p><p><strong>Example</strong>:</p><pre>(username=="ab*" or personal.firstName=="ab*" or personal.lastName=="ab*") and active=="true" sortby personal.lastName personal.firstName barcode
+
+{"module":"IMPORTS"}
+</pre></li><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul></div><div class="tab-pane" id="jobs_jobconfs_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Returns a list of jobconf items</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "job_confs": {
+      "id": "jobConfs",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref" : "jobs_conf.schema"
+      }
+    },
+    "total_records": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "job_confs",
+    "total_records"
+  ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "job_confs": [
+    {
+      "_id": "987654321",
+      "module": "IMPORT",
+      "name": "Generic file import job",
+      "description": "Import",
+      "type": "MANUAL",
+      "category": "IMPORTS",
+      "enabled": true,
+      "inst_id": "my_inst",
+      "creator": "joe",
+      "parameters": [
+        {"key1": "value"},
+        {"key1": "value"}
+      ]
+    }
+  ],
+  "total_records": 1
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>unable to list jobconfs -- malformed parameter &#39;query&#39;, syntax error at column 6</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Not authorized to perform requested action</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>unable to list jobconfs -- unauthorized</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>internal server error, contact administrator</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/jobs</span>/jobconfs</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new type of Job Conf</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs_post_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs_post_request"><h3>Query Parameters</h3><ul><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "creator": {
+      "type": "string"
+    },
+    "inst_id": {
+      "type": "string"
+    },
+    "lib_id": {
+      "type": "string"
+    },
+    "bulk_size": {
+      "type": "integer"
+    },
+    "fail_percentage": {
+      "type": "number"
+    },
+    "last_modified": {
+      "type": "object",
+      "$ref": "last_modified.schema"
+    },
+    "parameters": {
+      "type": "object",
+      "$ref" : "raml-util/schemas/parameters.schema"
+    }
+  },
+  "required": [
+    "module",
+    "name",
+    "type",
+    "enabled",
+    "inst_id"
+  ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "_id": "987654321",
+  "module": "IMPORT",
+  "name": "Generic file import job",
+  "description": "Import",
+  "type": "MANUAL",
+  "category": "IMPORTS",
+  "enabled": true,
+  "inst_id": "my_inst",
+  "creator": "joe",
+  "parameters": [
+    {"key1": "value"},
+    {"key1": "value"}
+  ]
+}
+</code></pre></div><div class="tab-pane" id="jobs_jobconfs_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Returns a newly created item, with server-controlled fields like &#39;id&#39; populated</p><h3>Headers</h3><ul><li><strong>Location</strong>: <em>(string)</em><p>URI to the created jobconf item</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "_id": "987654321",
+  "module": "IMPORT",
+  "name": "Generic file import job",
+  "description": "Import",
+  "type": "MANUAL",
+  "category": "IMPORTS",
+  "enabled": true,
+  "inst_id": "my_inst",
+  "creator": "joe",
+  "parameters": [
+    {"key1": "value"},
+    {"key1": "value"}
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"unable to add jobconf -- malformed JSON at 13:3"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Not authorized to perform requested action</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>unable to create jobconfs -- unauthorized</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>Internal server error, contact administrator</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_jobs_jobconfs__jobconfsId_"><span class="parent">/jobs/jobconfs</span>/{jobconfsId}</a> <span class="methods"><a href="#jobs_jobconfs__jobconfsId__get"><span class="badge badge_get">get</span></a> <a href="#jobs_jobconfs__jobconfsId__delete"><span class="badge badge_delete">delete</span></a> <a href="#jobs_jobconfs__jobconfsId__put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_jobs_jobconfs__jobconfsId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Entity representing a jobconf</p></div><div class="list-group"><div onclick="window.location.href = '#jobs_jobconfs__jobconfsId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve jobconf item with given {jobconfId}</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#jobs_jobconfs__jobconfsId__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete jobconf item with given {jobconfId}</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#jobs_jobconfs__jobconfsId__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update jobconf item with given {jobconfId}</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs__jobconfsId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/jobs/jobconfs</span>/{jobconfsId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve jobconf item with given {jobconfId}</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs__jobconfsId__get_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs__jobconfsId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs__jobconfsId__get_request"><h3>URI Parameters</h3><ul><li><strong>jobconfsId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul></div><div class="tab-pane" id="jobs_jobconfs__jobconfsId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Returns item with a given ID</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "creator": {
+      "type": "string"
+    },
+    "inst_id": {
+      "type": "string"
+    },
+    "lib_id": {
+      "type": "string"
+    },
+    "bulk_size": {
+      "type": "integer"
+    },
+    "fail_percentage": {
+      "type": "number"
+    },
+    "last_modified": {
+      "type": "object",
+      "$ref": "last_modified.schema"
+    },
+    "parameters": {
+      "type": "object",
+      "$ref" : "raml-util/schemas/parameters.schema"
+    }
+  },
+  "required": [
+    "module",
+    "name",
+    "type",
+    "enabled",
+    "inst_id"
+  ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "_id": "987654321",
+  "module": "IMPORT",
+  "name": "Generic file import job",
+  "description": "Import",
+  "type": "MANUAL",
+  "category": "IMPORTS",
+  "enabled": true,
+  "inst_id": "my_inst",
+  "creator": "joe",
+  "parameters": [
+    {"key1": "value"},
+    {"key1": "value"}
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Item with a given ID not found</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"jobconf not found"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>internal server error, contact administrator</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs__jobconfsId__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/jobs/jobconfs</span>/{jobconfsId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete jobconf item with given {jobconfId}</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs__jobconfsId__delete_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs__jobconfsId__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs__jobconfsId__delete_request"><h3>URI Parameters</h3><ul><li><strong>jobconfsId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul></div><div class="tab-pane" id="jobs_jobconfs__jobconfsId__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>Item deleted successfully</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"unable to delete jobconf -- constraint violation"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Item with a given ID not found</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"jobconf not found"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>Internal server error, contact administrator</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs__jobconfsId__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/jobs/jobconfs</span>/{jobconfsId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update jobconf item with given {jobconfId}</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs__jobconfsId__put_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs__jobconfsId__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs__jobconfsId__put_request"><h3>URI Parameters</h3><ul><li><strong>jobconfsId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "creator": {
+      "type": "string"
+    },
+    "inst_id": {
+      "type": "string"
+    },
+    "lib_id": {
+      "type": "string"
+    },
+    "bulk_size": {
+      "type": "integer"
+    },
+    "fail_percentage": {
+      "type": "number"
+    },
+    "last_modified": {
+      "type": "object",
+      "$ref": "last_modified.schema"
+    },
+    "parameters": {
+      "type": "object",
+      "$ref" : "raml-util/schemas/parameters.schema"
+    }
+  },
+  "required": [
+    "module",
+    "name",
+    "type",
+    "enabled",
+    "inst_id"
+  ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "_id": "987654321",
+  "module": "IMPORT",
+  "name": "Generic file import job",
+  "description": "Import",
+  "type": "MANUAL",
+  "category": "IMPORTS",
+  "enabled": true,
+  "inst_id": "my_inst",
+  "creator": "joe",
+  "parameters": [
+    {"key1": "value"},
+    {"key1": "value"}
+  ]
+}
+</code></pre></div><div class="tab-pane" id="jobs_jobconfs__jobconfsId__put_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>Item successfully updated</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"unable to update jobconf -- malformed JSON at 13:4"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Item with a given ID not found</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"jobconf not found"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>internal server error, contact administrator</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_jobs_jobconfs__jobconfsId__jobs"><span class="parent">/jobs/jobconfs/{jobconfsId}</span>/jobs</a> <span class="methods"><a href="#jobs_jobconfs__jobconfsId__jobs_get"><span class="badge badge_get">get</span></a> <a href="#jobs_jobconfs__jobconfsId__jobs_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_jobs_jobconfs__jobconfsId__jobs" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Collection of job items.</p></div><div class="list-group"><div onclick="window.location.href = '#jobs_jobconfs__jobconfsId__jobs_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve a list of job items.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#jobs_jobconfs__jobconfsId__jobs_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new job item.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs__jobconfsId__jobs_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/jobs/jobconfs/{jobconfsId}</span>/jobs</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve a list of job items.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs__jobconfsId__jobs_get_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs__jobconfsId__jobs_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs__jobconfsId__jobs_get_request"><h3>URI Parameters</h3><ul><li><strong>jobconfsId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>offset</strong>: <em>(integer - default: 0 - minimum: 0 - maximum: 2147483647)</em><p>Skip over a number of elements by specifying an offset value for the query</p></li><li><strong>limit</strong>: <em>(integer - default: 10 - minimum: 0 - maximum: 2147483647)</em><p>Limit the number of elements returned in the response</p><p><strong>Example</strong>:</p><pre><code>10</code></pre></li><li><strong>orderBy</strong>: <em>(string)</em><p>Order by field: field A, field B</p></li><li><strong>order</strong>: <em>(one of desc, asc - default: desc)</em><p>Order</p></li><li><strong>query</strong>: <em>(string)</em><p>A query expressed as a CQL string (see <a href="https://dev.folio.org/reference/glossary#cql">dev.folio.org/reference/glossary#cql</a>) using valid searchable fields. The first example below shows the general form of a full CQL query, but those fields might not be relevant in this context.</p><p>native mongodb query syntax with valid searchable fields: for example location</p><p><strong>Example</strong>:</p><pre>(username=="ab*" or personal.firstName=="ab*" or personal.lastName=="ab*") and active=="true" sortby personal.lastName personal.firstName barcode
+
+{"job_conf_id":"12345"}
+</pre></li><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul></div><div class="tab-pane" id="jobs_jobconfs__jobconfsId__jobs_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Returns a list of job items</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "jobs": {
+      "id": "jobs",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref" : "job.schema"
+      }
+    },
+    "total_records": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "jobs",
+    "total_records"
+  ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "jobs": [
+    {
+      "_id": "12345678",
+      "job_conf_id": "987654321",
+      "creator": "a",
+      "status": "ready",
+      "inst_id": "my_inst",
+      "parameters" : [
+        {"errors":"2"},
+        {"succeeded":"2"}
+      ]
+    }
+  ],
+  "total_records": 1
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>unable to list jobs -- malformed parameter &#39;query&#39;, syntax error at column 6</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Not authorized to perform requested action</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>unable to list jobs -- unauthorized</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>internal server error, contact administrator</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs__jobconfsId__jobs_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/jobs/jobconfs/{jobconfsId}</span>/jobs</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new job item.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs__jobconfsId__jobs_post_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs__jobconfsId__jobs_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs__jobconfsId__jobs_post_request"><h3>URI Parameters</h3><ul><li><strong>jobconfsId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "creator": {
+      "type": "string",
+      "readonly": true
+    },
+    "job_conf_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "bulk_size": {
+      "type": "integer"
+    },
+    "fail_percentage": {
+      "type": "number"
+    },
+    "last_modified": {
+      "type": "object",
+      "$ref" : "last_modified.schema"
+    },
+    "inst_id": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "object",
+      "$ref" : "raml-util/schemas/parameters.schema",
+      "readonly": true
+    }
+  },
+  "required": [
+    "job_conf_id",
+    "creator",
+    "status",
+    "inst_id"
+  ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "_id": "12345678",
+  "job_conf_id": "987654321",
+  "creator": "a",
+  "status": "ready",
+  "inst_id": "my_inst",
+  "parameters" : [
+    {"errors":"2"},
+    {"succeeded":"2"}
+  ]
+}
+</code></pre></div><div class="tab-pane" id="jobs_jobconfs__jobconfsId__jobs_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Returns a newly created item, with server-controlled fields like &#39;id&#39; populated</p><h3>Headers</h3><ul><li><strong>Location</strong>: <em>(string)</em><p>URI to the created job item</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "_id": "12345678",
+  "job_conf_id": "987654321",
+  "creator": "a",
+  "status": "ready",
+  "inst_id": "my_inst",
+  "parameters" : [
+    {"errors":"2"},
+    {"succeeded":"2"}
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"unable to add job -- malformed JSON at 13:3"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Not authorized to perform requested action</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>unable to create jobs -- unauthorized</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>Internal server error, contact administrator</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_jobs_jobconfs__jobconfsId__jobs__jobId_"><span class="parent">/jobs/jobconfs/{jobconfsId}/jobs</span>/{jobId}</a> <span class="methods"><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__get"><span class="badge badge_get">get</span></a> <a href="#jobs_jobconfs__jobconfsId__jobs__jobId__delete"><span class="badge badge_delete">delete</span></a> <a href="#jobs_jobconfs__jobconfsId__jobs__jobId__put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel_jobs_jobconfs__jobconfsId__jobs__jobId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Entity representing a job</p></div><div class="list-group"><div onclick="window.location.href = '#jobs_jobconfs__jobconfsId__jobs__jobId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve job item with given {jobId}</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#jobs_jobconfs__jobconfsId__jobs__jobId__delete'" class="list-group-item"><span class="badge badge_delete">delete</span><div class="method_description"><p>Delete job item with given {jobId}</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#jobs_jobconfs__jobconfsId__jobs__jobId__put'" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"><p>Update job item with given {jobId}</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs__jobconfsId__jobs__jobId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/jobs/jobconfs/{jobconfsId}/jobs</span>/{jobId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve job item with given {jobId}</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__get_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs__jobconfsId__jobs__jobId__get_request"><h3>URI Parameters</h3><ul><li><strong>jobconfsId</strong>: <em>required (string)</em></li><li><strong>jobId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul></div><div class="tab-pane" id="jobs_jobconfs__jobconfsId__jobs__jobId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Returns item with a given ID</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "creator": {
+      "type": "string",
+      "readonly": true
+    },
+    "job_conf_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "bulk_size": {
+      "type": "integer"
+    },
+    "fail_percentage": {
+      "type": "number"
+    },
+    "last_modified": {
+      "type": "object",
+      "$ref" : "last_modified.schema"
+    },
+    "inst_id": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "object",
+      "$ref" : "raml-util/schemas/parameters.schema",
+      "readonly": true
+    }
+  },
+  "required": [
+    "job_conf_id",
+    "creator",
+    "status",
+    "inst_id"
+  ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "_id": "12345678",
+  "job_conf_id": "987654321",
+  "creator": "a",
+  "status": "ready",
+  "inst_id": "my_inst",
+  "parameters" : [
+    {"errors":"2"},
+    {"succeeded":"2"}
+  ]
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Item with a given ID not found</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"job not found"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>internal server error, contact administrator</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs__jobconfsId__jobs__jobId__delete"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_delete">delete</span> <span class="parent">/jobs/jobconfs/{jobconfsId}/jobs</span>/{jobId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Delete job item with given {jobId}</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__delete_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__delete_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs__jobconfsId__jobs__jobId__delete_request"><h3>URI Parameters</h3><ul><li><strong>jobconfsId</strong>: <em>required (string)</em></li><li><strong>jobId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul></div><div class="tab-pane" id="jobs_jobconfs__jobconfsId__jobs__jobId__delete_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>Item deleted successfully</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"unable to delete job -- constraint violation"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Item with a given ID not found</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"job not found"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>Internal server error, contact administrator</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs__jobconfsId__jobs__jobId__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/jobs/jobconfs/{jobconfsId}/jobs</span>/{jobId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Update job item with given {jobId}</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__put_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__put_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs__jobconfsId__jobs__jobId__put_request"><h3>URI Parameters</h3><ul><li><strong>jobconfsId</strong>: <em>required (string)</em></li><li><strong>jobId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "module": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "creator": {
+      "type": "string",
+      "readonly": true
+    },
+    "job_conf_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "bulk_size": {
+      "type": "integer"
+    },
+    "fail_percentage": {
+      "type": "number"
+    },
+    "last_modified": {
+      "type": "object",
+      "$ref" : "last_modified.schema"
+    },
+    "inst_id": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "object",
+      "$ref" : "raml-util/schemas/parameters.schema",
+      "readonly": true
+    }
+  },
+  "required": [
+    "job_conf_id",
+    "creator",
+    "status",
+    "inst_id"
+  ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "_id": "12345678",
+  "job_conf_id": "987654321",
+  "creator": "a",
+  "status": "ready",
+  "inst_id": "my_inst",
+  "parameters" : [
+    {"errors":"2"},
+    {"succeeded":"2"}
+  ]
+}
+</code></pre></div><div class="tab-pane" id="jobs_jobconfs__jobconfsId__jobs__jobId__put_response"><h2>HTTP status code <a href="http://httpstatus.es/204" target="_blank">204</a></h2><p>Item successfully updated</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"unable to update job -- malformed JSON at 13:4"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/404" target="_blank">404</a></h2><p>Item with a given ID not found</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"job not found"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>internal server error, contact administrator</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_jobs_jobconfs__jobconfsId__jobs__jobId__bulks"><span class="parent">/jobs/jobconfs/{jobconfsId}/jobs/{jobId}</span>/bulks</a> <span class="methods"><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__bulks_get"><span class="badge badge_get">get</span></a> <a href="#jobs_jobconfs__jobconfsId__jobs__jobId__bulks_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_jobs_jobconfs__jobconfsId__jobs__jobId__bulks" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Collection of bulk items.</p></div><div class="list-group"><div onclick="window.location.href = '#jobs_jobconfs__jobconfsId__jobs__jobId__bulks_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Retrieve a list of bulk items.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#jobs_jobconfs__jobconfsId__jobs__jobId__bulks_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Create a new bulk item.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs__jobconfsId__jobs__jobId__bulks_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/jobs/jobconfs/{jobconfsId}/jobs/{jobId}</span>/bulks</h4></div><div class="modal-body"><div class="alert alert-info"><p>Retrieve a list of bulk items.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__bulks_get_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__bulks_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs__jobconfsId__jobs__jobId__bulks_get_request"><h3>URI Parameters</h3><ul><li><strong>jobconfsId</strong>: <em>required (string)</em></li><li><strong>jobId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul></div><div class="tab-pane" id="jobs_jobconfs__jobconfsId__jobs__jobId__bulks_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Returns a list of bulk items</p><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "bulks": {
+      "id": "bulks",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "$ref" : "bulk.schema",
+        "readonly": true
+      }
+    },
+    "total_records": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "bulks",
+    "total_records"
+  ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "bulks": [
+    {
+      "bulk_id": 1,
+      "error_count": 8,
+      "success_count": 9,
+      "error_ids": "1,2,3,4,5,6,7,8",
+      "inst_id": "my_inst",
+      "job_id": "76543331"
+    }
+  ],
+  "total_records": 1
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>unable to list bulks -- malformed parameter &#39;query&#39;, syntax error at column 6</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Not authorized to perform requested action</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>unable to list bulks -- unauthorized</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>internal server error, contact administrator</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="jobs_jobconfs__jobconfsId__jobs__jobId__bulks_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/jobs/jobconfs/{jobconfsId}/jobs/{jobId}</span>/bulks</h4></div><div class="modal-body"><div class="alert alert-info"><p>Create a new bulk item.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__bulks_post_request" data-toggle="tab">Request</a></li><li><a href="#jobs_jobconfs__jobconfsId__jobs__jobId__bulks_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="jobs_jobconfs__jobconfsId__jobs__jobId__bulks_post_request"><h3>URI Parameters</h3><ul><li><strong>jobconfsId</strong>: <em>required (string)</em></li><li><strong>jobId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>lang</strong>: <em>(string - default: en - pattern: [a-zA-Z]{2})</em><p>Requested language. Optional. [lang=en]</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "bulk_id": {
+      "type": "integer"
+    },
+    "error_count": {
+      "type": "integer"
+    },
+    "success_count": {
+      "type": "integer"
+    },
+    "error_ids": {
+      "type": "string"
+    },
+    "last_modified": {
+      "type": "object",
+      "$ref" : "last_modified.schema",
+      "readonly": true
+    },
+    "inst_id": {
+      "type": "string"
+    },
+    "job_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "bulk_id",
+    "job_id",
+    "inst_id"
+  ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "bulk_id": 1,
+  "error_count": 8,
+  "success_count": 9,
+  "error_ids": "1,2,3,4,5,6,7,8",
+  "inst_id": "my_inst",
+  "job_id": "76543331"
+}
+</code></pre></div><div class="tab-pane" id="jobs_jobconfs__jobconfsId__jobs__jobId__bulks_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><p>Returns a newly created item, with server-controlled fields like &#39;id&#39; populated</p><h3>Headers</h3><ul><li><strong>Location</strong>: <em>(string)</em><p>URI to the created bulk item</p></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Example</strong>:</p><pre><code>{
+  "bulk_id": 1,
+  "error_count": 8,
+  "success_count": 9,
+  "error_ids": "1,2,3,4,5,6,7,8",
+  "inst_id": "my_inst",
+  "job_id": "76543331"
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>Bad request, e.g. malformed request body or query parameter. Details of the error (e.g. name of the parameter or line/character number with malformed data) provided in the response.</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>"unable to add bulk -- malformed JSON at 13:3"
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Not authorized to perform requested action</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>unable to create bulks -- unauthorized</code></pre><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>Internal server error, e.g. due to misconfiguration</p><h3>Body</h3><p><strong>Type: text/plain</strong></p><p><strong>Example</strong>:</p><pre><code>Internal server error, contact administrator</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#jobs">/jobs</a></li></ul></div></div></div></div></body></html>
